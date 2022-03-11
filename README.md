@@ -1,11 +1,8 @@
 # Note-Taker
 
-## Your Task
+## My Task
 
-Your assignment is to modify starter code to create an application called Note Taker that can be used to write and save notes. This application will use an Express.js back end and will save and retrieve note data from a JSON file.
-
-The application’s front end has already been created. It's your job to build the back end, connect the two, and then deploy the entire application to Heroku.
-
+My assignment is to modify starter code to create an application called Note Taker that can be used to write and save notes. This application will use an Express.js back end and will save and retrieve note data from a JSON file.
 
 ## User Story
 
@@ -18,7 +15,6 @@ SO THAT I can organize my thoughts and keep track of tasks I need to complete
 
 ## Acceptance Criteria
 
-```
 GIVEN a note-taking application
 WHEN I open the Note Taker
 THEN I am presented with a landing page with a link to a notes page
@@ -32,7 +28,7 @@ WHEN I click on an existing note in the list in the left-hand column
 THEN that note appears in the right-hand column
 WHEN I click on the Write icon in the navigation at the top of the page
 THEN I am presented with empty fields to enter a new note title and the note’s text in the right-hand column
-```
+
 
 
 ## Mock-Up
@@ -59,18 +55,6 @@ The following API routes should be created:
 * `GET /api/notes` should read the `db.json` file and return all saved notes as JSON.
 
 * `POST /api/notes` should receive a new note to save on the request body, add it to the `db.json` file, and then return the new note to the client. You'll need to find a way to give each note a unique id when it's saved (look into npm packages that could do this for you).
-
-
-## Bonus
-
-You haven’t learned how to handle DELETE requests, but this application offers that functionality on the front end. As a bonus, try to add the DELETE route to the application using the following guideline:
-
-* `DELETE /api/notes/:id` should receive a query parameter that contains the id of a note to delete. To delete a note, you'll need to read all notes from the `db.json` file, remove the note with the given `id` property, and then rewrite the notes to the `db.json` file.
-
-
-## Grading Requirements
-
-This homework is graded based on the following criteria: 
 
 
 ### Technical Acceptance Criteria: 40%
@@ -112,19 +96,14 @@ This homework is graded based on the following criteria:
 
 * Repository contains quality README file with description, screenshot, and link to deployed application.
 
-
-### Bonus: +10 Points
-
-* Application allows users to delete notes.
-
-
 ## Review
 
-You are required to submit BOTH of the following for review:
+I'm required to submit BOTH of the following for review:
 
-* The URL of the functional, deployed application.
+* The URL of the functional, deployed application:
+https://paterma.github.io/Note-Taker/
 
-* The URL of the GitHub repository, with a unique name and a README describing the project.
+* The URL of the GitHub repository, with a unique name and a README describing the project:
+https://github.com/Paterma/Note-Taker
 
-- - -
-© 2022 Trilogy Education Services, LLC, a 2U, Inc. brand. Confidential and Proprietary. All Rights Reserved.
+![Note Take Screenshot]()
