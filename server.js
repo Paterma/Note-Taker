@@ -5,6 +5,7 @@ const fs = require('fs');
 const util = require('util');
 const uuid = require('./helpers/uuid');
 const path = require('path');
+const { json } = require('express/lib/response');
 const notes = req.body;
 const savedNotes = []; //array for my saved notes
 
@@ -19,7 +20,6 @@ app.use(express.static('public'));
 app.get('/', (req, res) =>
 res.sendFile(path.join(__dirname, '/public/index.html'))
 );
-
 // cnnecting with db.json
 app.get("/api/notes", function (req, res) {
 res.sendFile(path.join(__dirname, "db/db.json"))
@@ -31,31 +31,30 @@ res.sendFile(path.join(__dirname, "public/notes.html"))
 });
 
 //fall back route
-app.get("*", (req, res) => {
+app.get("/", (req, res) => {
 res.sendFile(path.join(__dirname, "index.html"));
 });
 
-// //read the db file data, show an error if no data
+// //read the db file data, show an error if no data, parse if there is data
 fs.readFile('/db/db.json', (err, data) => {
 if (err) {
-console.log ("Error: ", err);
+console.error(err);
+} else {
+    const newNotes = JSON.parse(data)
 }
 })
+//pushing new notes in the saved array
+newNotes.push(savedNotes);
 
-
-
-
-//converting data to a string to save it
-const stringData = JSON.stringify(newReview);
 
 //making the string a file
-fs.writeFile(`./db/${newReview.product}.json`, stringData, (err) =>
+fs.writeFile(`./db/db.json`, JSON.stringify (newNotes, (err) =>
 err
 ? console.error(err)
-: console.log(
-`The new note ${newReview.product} has been saved`
+: console.log("New new note has been saved")
 )
 );
+
 
 
 
