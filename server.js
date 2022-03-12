@@ -25,36 +25,15 @@ res.sendFile(path.join(__dirname, '/public/index.html'))
 const readFileAsync = util.promisify(fs.readFile)
 // cnnecting with db.json
 app.get("/api/notes", (req, res) => {
-//   return res.sendFile(path.join(__dirname, "/db/db.json"))//THIS LINE WORKS
-
-// function read() {return readFileAsync('./db/db.json', 'utf8')}
-// function readFiles() {
-//     read().then(data => {
-//         let parsedData = [].concat(JSON.parse(data))
-//         console.log(parsedData)
-//         return parsedData
-//     })
     fs.readFile('./db/db.json', 'utf8', (err, data) => {
         if (err) {
         console.error(err);
         } else {
         //parsing data
-        let parsedData = [].concat(JSON.parse(data))
-       parsedData.push(content);
-       //   writeToFile(file, parsedData)
-//     //     }
-//     //     })} 
-// };
-// try {
-
-//     res.status(200).json(readFiles());
-//     console.log('success')
-// } catch {
-//     console.log(error)
-// }
-})
-
-//res.json()
+        let parsedData =JSON.parse(data) //when you need to call JSON, caps. As a method, lowercase
+        res.json(parsedData)
+}})
+}  ) 
 
 //route to notes specifically
 app.get("/notes", function (req, res) {
@@ -65,6 +44,58 @@ res.sendFile(path.join(__dirname, "public/notes.html"))
 // if nothing else matches then *
 app.get("/", (req, res) => {
 res.sendFile(path.join(__dirname, "index.html"));
+});
+
+
+app.post('/api/notes', (req, res) => {
+    // Log that a POST request was received
+    console.info(`${req.method} request received to add a note`);
+
+    // Destructuring assignment for the items in req.body
+    const { title, text } = req.body; //allows you to access data in a string (JSON)
+
+    // If all the required properties are present
+    if (title && text ) {
+      // Variable for the object we will save
+    const newReview = {
+        title,
+        text,
+        id: uuid(),
+    };
+
+      // Obtain existing texts
+    fs.readFile('./db/db.json', 'utf8', (err, data) => {
+        if (err) {
+        console.error(err);
+        } else {
+          // Convert string into JSON object
+        const parsedNotes = JSON.parse(data);
+
+          // Add a new review
+        parsedNotes.push(newReview);
+
+          // Write updated reviews back to the file
+        fs.writeFile(
+            './db/db.json',
+            JSON.stringify(parsedNotes, null, 4),
+            (writeErr) =>
+            writeErr
+                ? console.error(writeErr)
+                : console.info('Successfully updated notes!')
+        );
+        }
+    });
+
+    const response = {
+        status: 'success',
+        body: newReview,
+    };
+
+    console.log(response);
+    res.status(201).json(response);
+    } else {
+    res.status(500).json('Error in posting review');
+    }
 });
 // newNoteBtn = document.querySelector('.new-note');
 
@@ -106,5 +137,5 @@ app.listen(PORT, function () {
 //The links are using get requests (clicking the button in index is firing off that get request, so the link)
 
 
-app.get("/api/notes", function (req, res) {
+// app.get("/api/notes", function (req, res) {
     //   return res.sendFile(path.join(__dirname, "/db/db.json"))//THIS LINE WORKS
