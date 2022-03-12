@@ -99,43 +99,7 @@ app.post('/api/notes', (req, res) => {
 });
 // newNoteBtn = document.querySelector('.new-note');
 
-//destructing the notes
-// const { noteTitle, noteText} = req.body; //allows you to access data in a string (JSON) 
-// const notes = {
-//     noteTitle,
-//     noteText,
-//     review_id: uuid(),
-// };
-// //read the db file data, show an error if no data, push note if there is data
-
-
-//making the string a file
-// fs.writeFile(`./db/db.json`, JSON.stringify (savedNotes, (err) =>
-// err
-// ? console.error(err)
-// : console.log("New note has been saved")
-// )
-// );
-//need a param set up for the callback- returning the new note 
-// const specificTerm = req.params.somethinghere(toLowerCase){
-
-// }
-
 //the server will keep running
 app.listen(PORT, function () {
     console.log(`Listening on  http://localhost:${PORT}`)
 })
-//need to do a callback function
-//Link all proper folders/files
-//Do read and write files
-//create an empty array for notes to go
-//link buttons so when clicked they bring stuff up
-//Need to link db.json for the write file
-//app.get()
-//need a param set up for the callback- returning the new note 
-//DEPLOY TO HEROKU
-//The links are using get requests (clicking the button in index is firing off that get request, so the link)
-
-
-// app.get("/api/notes", function (req, res) {
-    //   return res.sendFile(path.join(__dirname, "/db/db.json"))//THIS LINE WORKS
