@@ -7,5 +7,15 @@
         "title": "hi",
         "text": "hi",
         "id": "d59b"
+    },
+    {
+        "title": "Costco",
+        "text": "Spinach\nLettuce\nChicken",
+        "id": "34d3"
+    },
+    {
+        "title": "Household Chores",
+        "text": "Wash Dishes\nMop\n",
+        "id": "2b06"
     }
 ]
